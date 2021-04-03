@@ -1,10 +1,7 @@
 package com.bms.admin;
 
-import com.bms.book.BookAdd;
 import com.bms.book.BookCheck;
-import com.bms.book.BookModification;
 import com.bms.dao.DatabaseConnect;
-import com.bms.util.LogUtils;
 import lombok.SneakyThrows;
 
 import javax.swing.*;
@@ -20,9 +17,9 @@ import java.util.Vector;
 public class Logjm extends JFrame implements ActionListener {
     Connection connection = DatabaseConnect.getConnection();
 
-    JTable log = new JTable(100,2);
-
     String name = null;
+
+    JTable log = new JTable(100,2);
 
     private JButton back;
     private JButton refresh;
@@ -32,15 +29,14 @@ public class Logjm extends JFrame implements ActionListener {
         this.setTitle(title);
         this.setSize(1980,1080);
         this.setResizable(true);
-
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         this.name = name;
 
         init();
 
         this.setVisible(true);
-
-
     }
 
     public void init() throws SQLException {
@@ -61,7 +57,6 @@ public class Logjm extends JFrame implements ActionListener {
             log = new JTable(tableValues,columnNames);
         }
 
-
         log.setPreferredScrollableViewportSize(new Dimension(900, 550));
         JScrollPane s = new JScrollPane(log);
         getContentPane().add(s, BorderLayout.CENTER);
@@ -70,8 +65,6 @@ public class Logjm extends JFrame implements ActionListener {
 
         log.setBounds(15,55,1880,930);
         add(log);
-
-
 
         back=new JButton("返回");
         back.setBounds(795,15,90,25);
@@ -85,7 +78,6 @@ public class Logjm extends JFrame implements ActionListener {
         back.addActionListener(this);
         refresh.addActionListener(this);
     }
-
 
     @SneakyThrows
     public void actionPerformed(ActionEvent e) {

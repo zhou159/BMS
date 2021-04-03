@@ -9,21 +9,11 @@ import lombok.SneakyThrows;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
-import java.util.Locale;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class BookBorrow extends JFrame implements ActionListener{
-
-
 
     int readId = 0;
     String name = null;
@@ -47,6 +37,7 @@ public class BookBorrow extends JFrame implements ActionListener{
         this.setSize(320,240);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         init();
 
@@ -134,7 +125,6 @@ public class BookBorrow extends JFrame implements ActionListener{
                                 new BookCheckReader("图书信息",readId,name);
                                 this.dispose();
                             }
-
                         //表里没记录
                         }else {
                             //查询出书籍库存量
@@ -158,7 +148,6 @@ public class BookBorrow extends JFrame implements ActionListener{
                                 JOptionPane.showMessageDialog(null, "借书成功！");
                                 new BookCheckReader("图书信息",readId,name);
                                 this.dispose();
-
                             }
                         }
 

@@ -34,13 +34,13 @@ public class LoginInfoUpdate extends JFrame implements ActionListener{
     private JButton confirm;
     private JButton exit;
 
-
     public LoginInfoUpdate(String title,String name,int readId) throws SQLException {
 
         this.setTitle(title);
         this.setSize(300,450);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.name = name;
         this.readId = readId;

@@ -1,6 +1,5 @@
 package com.bms.reader;
 
-import com.bms.book.BookBorrow;
 import com.bms.book.BookCheckReader;
 import com.bms.book.BookReturn;
 import com.bms.dao.DatabaseConnect;
@@ -33,17 +32,15 @@ public class ReaderBorrowBooks extends JFrame implements ActionListener {
     private JLabel table3;
     private JLabel table4;
 
-
     public ReaderBorrowBooks(String title,String name,int readId) throws SQLException {
         this.setTitle(title);
         this.setSize(1000,700);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
-
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.readId = readId;
         this.name = name;
-
 
         init();
         this.setVisible(true);
@@ -83,7 +80,6 @@ public class ReaderBorrowBooks extends JFrame implements ActionListener {
         JScrollPane s = new JScrollPane(book);
         getContentPane().add(s, BorderLayout.CENTER);
         book.revalidate();
-
 
         book.setBounds(35,65,900,550);
         add(book);
@@ -134,7 +130,6 @@ public class ReaderBorrowBooks extends JFrame implements ActionListener {
     }
     @SneakyThrows
     public void actionPerformed(ActionEvent e) {
-
 
         if (e.getSource()==bookReturn) {
             new BookReturn("还书",readId,name);

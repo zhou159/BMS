@@ -13,23 +13,14 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Readerjm extends JFrame implements ActionListener{
 
-    /**
-
-     *
-     */
-
     String name=null;
     int readId=0;
 
     private JLabel  welcome;
     private JLabel  choose;
 
-
-
     private JButton bookcheck;
     private JButton exit;
-
-
 
     public Readerjm(String title,String name,int readId){
         this.name = name;
@@ -39,12 +30,12 @@ public class Readerjm extends JFrame implements ActionListener{
         this.setSize(400,350);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         init();
 
         this.setVisible(true);
     }
-
 
     public void init() {
         this.setLayout(null);//清空整个布局管理器
@@ -69,7 +60,6 @@ public class Readerjm extends JFrame implements ActionListener{
 
         bookcheck.addActionListener(this);
         exit.addActionListener(this);
-
     }
 
     @SneakyThrows
@@ -84,7 +74,7 @@ public class Readerjm extends JFrame implements ActionListener{
 
         if (e.getSource()==exit) {
             System.exit(EXIT_ON_CLOSE);
-        }//关闭此窗口口
+        }
 
     }
 }

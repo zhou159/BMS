@@ -1,25 +1,15 @@
 package com.bms.account;
 
 import java.awt.event.ActionEvent;
-
-
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import com.bms.dao.DatabaseConnect;
-
-
-
 
 public class Register extends JFrame implements ActionListener {
 
@@ -38,6 +28,7 @@ public class Register extends JFrame implements ActionListener {
         this.setSize(400,250);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         init();
 

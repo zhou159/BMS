@@ -1,22 +1,18 @@
 package com.bms.book;
 
-
 import com.bms.dao.DatabaseConnect;
 import com.bms.util.LogUtils;
 import lombok.SneakyThrows;
 
 import java.awt.Color;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.*;
-
 
 @SuppressWarnings("serial")
 public class BookAdd extends JFrame implements ActionListener{
@@ -46,6 +42,7 @@ public class BookAdd extends JFrame implements ActionListener{
         this.setSize(300,450);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.name = name;
 

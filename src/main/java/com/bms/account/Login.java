@@ -31,17 +31,17 @@ public class Login extends JFrame implements ActionListener {
     private JButton register;
     private JButton wjma;
 
-
     public Login(String title){
 
-        this.setTitle(title);
-        this.setSize(380,300);
-        this.setResizable(false);
-        this.setLocationRelativeTo(getOwner());
+        this.setTitle(title);//设置窗口标题
+        this.setSize(380,300);//设置窗口大小
+        this.setResizable(false);//设置窗口大小是否可变
+        this.setLocationRelativeTo(getOwner());//窗口出现位置,getOwner:正中间
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//关闭窗口就停止程序运行
 
-        init();
+        init();//初始化函数,加载各个组件
 
-        this.setVisible(true);
+        this.setVisible(true);//是否可视化,一定要开启!!!
     }
 
 
@@ -90,8 +90,6 @@ public class Login extends JFrame implements ActionListener {
         wjma.addActionListener(this);
     }
 
-
-
     @SneakyThrows
     @SuppressWarnings("unlikely-arg-type")
     @Override
@@ -133,7 +131,6 @@ public class Login extends JFrame implements ActionListener {
             }
 
         }//判断管理员还是读者、默认只有admin一个管理员，
-
 
         if (e.getSource()==cancel) {
             AaccountTextField.setText(null);

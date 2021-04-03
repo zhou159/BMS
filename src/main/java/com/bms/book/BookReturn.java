@@ -1,6 +1,5 @@
 package com.bms.book;
 
-
 import com.bms.dao.DatabaseConnect;
 import com.bms.util.LogUtils;
 import lombok.SneakyThrows;
@@ -13,11 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class BookReturn extends JFrame implements ActionListener{
 
@@ -39,17 +34,19 @@ public class BookReturn extends JFrame implements ActionListener{
         this.setSize(320,220);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+        this.readId = readId;
+        this.name = name;
 
         init();
 
         this.setVisible(true);
 
-        this.readId = readId;
-        this.name = name;
+
     }
     public void init() {
         this.setLayout(null);//清空整个布局管理器
-
 
         bidLabel=new JLabel("请输入被还书籍的编号：");
         bidLabel.setBounds(30,20,150,25);
@@ -58,7 +55,6 @@ public class BookReturn extends JFrame implements ActionListener{
         amountLabel=new JLabel("请输入还书数量：");
         amountLabel.setBounds(30,70,130,25);
         add(amountLabel);
-
 
         bidTextField=new JTextField();
         bidTextField.setBounds(190,20,90,25);
@@ -83,7 +79,6 @@ public class BookReturn extends JFrame implements ActionListener{
     }
     @SneakyThrows
     public void actionPerformed(ActionEvent e) {
-
 
         if (e.getSource()==confirm) {
             if (e.getSource()==confirm) {
