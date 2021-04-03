@@ -64,7 +64,6 @@ public class Login extends JFrame implements ActionListener {
         ApasswordPasswordField.setBounds(110,80,150,25);
         add(ApasswordPasswordField);
 
-
         login=new JButton("登陆");
         login.setBounds(75,140,90,40);
         login.setBackground(Color.blue);
@@ -82,7 +81,6 @@ public class Login extends JFrame implements ActionListener {
         wjma=new JButton("忘记密码？ ");
         wjma.setBounds(260,80,100,25);
         add(wjma);
-
 
         login.addActionListener(this);
         cancel.addActionListener(this);
