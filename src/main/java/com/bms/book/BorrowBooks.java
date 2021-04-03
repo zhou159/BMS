@@ -1,9 +1,5 @@
 package com.bms.book;
 
-import com.bms.book.BookBorrow;
-import com.bms.book.BookCheck;
-import com.bms.book.BookCheckReader;
-import com.bms.book.BookReturn;
 import com.bms.dao.DatabaseConnect;
 import lombok.SneakyThrows;
 
@@ -34,15 +30,14 @@ public class BorrowBooks extends JFrame implements ActionListener {
     private JLabel table4;
     private JLabel table5;
 
-
     public BorrowBooks(String title,String name) throws SQLException {
         this.setTitle(title);
         this.setSize(1000,700);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.name = name;
-
 
         init();
         this.setVisible(true);
@@ -83,12 +78,10 @@ public class BorrowBooks extends JFrame implements ActionListener {
                 book = new JTable(tableValues,columnNames);
             }
         }
-
         book.setPreferredScrollableViewportSize(new Dimension(900, 550));
         JScrollPane s = new JScrollPane(book);
         getContentPane().add(s, BorderLayout.CENTER);
         book.revalidate();
-
 
         book.setBounds(35,65,900,550);
         add(book);
@@ -128,7 +121,6 @@ public class BorrowBooks extends JFrame implements ActionListener {
         table4.setForeground(Color.blue);
         add(table4);
 
-
         back=new JButton("返回");
         back.setBounds(650,15,90,25);
         back.setBackground(Color.blue);
@@ -144,7 +136,6 @@ public class BorrowBooks extends JFrame implements ActionListener {
     }
     @SneakyThrows
     public void actionPerformed(ActionEvent e) {
-
 
         if (e.getSource()==back) {
             new BookCheck("图书信息",name);

@@ -53,6 +53,8 @@ public class ReaderModification extends JFrame implements ActionListener{
         this.setSize(300,450);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);//关闭窗口就停止程序运行
+
         this.name = name;
 
         init();
@@ -123,19 +125,15 @@ public class ReaderModification extends JFrame implements ActionListener{
         back.setBounds(160,335,85,30);
         add(back);
 
-
         select.addActionListener(this);
         confirm.addActionListener(this);
         back.addActionListener(this);
     }
 
-
-
     @SneakyThrows
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
-
 
         if (e.getSource()==select) {
             try{

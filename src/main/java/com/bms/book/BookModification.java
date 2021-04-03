@@ -1,6 +1,5 @@
 package com.bms.book;
 
-
 import com.bms.dao.DatabaseConnect;
 import com.bms.util.LogUtils;
 import lombok.SneakyThrows;
@@ -16,14 +15,11 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-
 @SuppressWarnings("serial")
 public class BookModification extends JFrame implements ActionListener{
 
-
     Connection connect = DatabaseConnect.getConnection();
     String name = null;
-
 
     private JLabel  BidLabel;
     private JLabel  fill;
@@ -32,7 +28,6 @@ public class BookModification extends JFrame implements ActionListener{
     private JLabel BauthorLabel;
     private JLabel BpriceLabel;
     private JLabel Binventory;
-
 
     private JTextField BidTextField;
     private JTextField BnameTextField;
@@ -45,20 +40,20 @@ public class BookModification extends JFrame implements ActionListener{
     private JButton confirm;
     private JButton back;
 
-
     public BookModification(String title,String name) throws SQLException {
 
         this.setTitle(title);
         this.setSize(300,450);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         this.name = name;
 
         init();
 
         this.setVisible(true);
     }
-
 
     public void init() {
         this.setLayout(null);//清空整个布局管理器
@@ -93,7 +88,6 @@ public class BookModification extends JFrame implements ActionListener{
         Binventory.setBounds(30,240,80,40);
         add(Binventory);
 
-
         BidTextField=new JTextField();
         BidTextField.setBounds(25,30,150,25);
         add(BidTextField);
@@ -118,7 +112,6 @@ public class BookModification extends JFrame implements ActionListener{
         BstockTextField.setBounds(95,250,150,25);
         add(BstockTextField);
 
-
         select=new JButton("查询");
         select.setBounds(190,30,85,25);
         add(select);
@@ -132,15 +125,11 @@ public class BookModification extends JFrame implements ActionListener{
         back.setBounds(160,335,85,30);
         add(back);
 
-
-
         select.addActionListener(this);
         confirm.addActionListener(this);
         back.addActionListener(this);
 
     }
-
-
 
     @SneakyThrows
     @Override
@@ -203,7 +192,6 @@ public class BookModification extends JFrame implements ActionListener{
                     +"书籍库存:"+resultSet1.getString(5)+"->"+BstockTextField.getText().trim()+";"
                     +"书籍出版社:"+resultSet1.getString(6)+"->"+BpublishhouseTextField.getText().trim());
                 }
-
                 JOptionPane.showMessageDialog(null, "更新书籍信息成功！");
 
                 new BookCheck("图书信息",name);

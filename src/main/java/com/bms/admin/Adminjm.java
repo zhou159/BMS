@@ -7,7 +7,6 @@ import lombok.SneakyThrows;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -15,16 +14,10 @@ import javax.swing.*;
 @SuppressWarnings("serial")
 public class Adminjm extends JFrame implements ActionListener{
 
-    /**
-
-     *
-     */
+    String name = null;
 
     private JLabel  welcome;
     private JLabel  choose;
-
-    String name = null;
-
 
     private JButton readerwh;
     private JButton bookwh;
@@ -32,14 +25,13 @@ public class Adminjm extends JFrame implements ActionListener{
     private JButton setinformation;
     private JButton exit;
 
-
-
     public Adminjm(String title,String name) {
 
         this.setTitle(title);
         this.setSize(400,350);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.name = name;
 

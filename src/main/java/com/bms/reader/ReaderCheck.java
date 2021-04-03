@@ -1,7 +1,6 @@
 package com.bms.reader;
 
 import com.bms.admin.Adminjm;
-import com.bms.book.BookCheck;
 import com.bms.dao.DatabaseConnect;
 import lombok.SneakyThrows;
 
@@ -15,10 +14,8 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 public class ReaderCheck extends JFrame implements ActionListener {
-
 
     Connection connection = DatabaseConnect.getConnection();
 
@@ -39,18 +36,18 @@ public class ReaderCheck extends JFrame implements ActionListener {
     private JLabel table6;
     private JLabel table7;
 
-
     public ReaderCheck(String title,String name) throws SQLException {
         this.setTitle(title);
         this.setSize(970,700);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         this.name = name;
 
         init();
 
         this.setVisible(true);
-
 
     }
     public void init() throws SQLException {

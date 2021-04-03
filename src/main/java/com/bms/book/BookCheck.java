@@ -7,11 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.Vector;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import com.bms.admin.Adminjm;
 import com.bms.admin.Logjm;
@@ -28,7 +26,6 @@ public class BookCheck extends JFrame implements ActionListener {
 
     String name = null;
 
-
     private JButton bookadd;
     private JButton bookModification;
     private JButton bookDelete;
@@ -37,19 +34,18 @@ public class BookCheck extends JFrame implements ActionListener {
     private JButton refresh;
     private JButton log;
 
-
     public BookCheck(String title,String name) throws SQLException {
         this.setTitle(title);
         this.setSize(950,700);
         this.setResizable(false);
         this.setLocationRelativeTo(getOwner());
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         this.name = name;
 
         init();
 
         this.setVisible(true);
-
-
     }
     public void init() throws SQLException {
         PreparedStatement pstm = connection.prepareStatement("select * from book");
@@ -76,7 +72,6 @@ public class BookCheck extends JFrame implements ActionListener {
 
             book = new JTable(tableValues,columnNames);
         }
-
 
         book.setPreferredScrollableViewportSize(new Dimension(900, 550));
         JScrollPane s = new JScrollPane(book);
@@ -117,7 +112,6 @@ public class BookCheck extends JFrame implements ActionListener {
         log.setBounds(820,15,70,25);
         add(log);
 
-
         bookadd.addActionListener(this);
         bookModification.addActionListener(this);
         bookDelete.addActionListener(this);
@@ -126,7 +120,6 @@ public class BookCheck extends JFrame implements ActionListener {
         log.addActionListener(this);
         bookBr.addActionListener(this);
     }
-
 
     @SneakyThrows
     public void actionPerformed(ActionEvent e) {
