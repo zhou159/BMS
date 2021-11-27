@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="@localhost">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.20">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.23">
     <root id="1">
       <ServerVersion>5.5.61</ServerVersion>
       <DefaultEngine>InnoDB</DefaultEngine>
@@ -670,8 +670,6 @@
     </collation>
     <user id="209" parent="1" name="root">
       <Host>localhost</Host>
-      <ObjectGrants>ALL PRIVILEGES!
-</ObjectGrants>
     </user>
     <table id="210" parent="2" name="book"/>
     <table id="211" parent="2" name="br"/>
