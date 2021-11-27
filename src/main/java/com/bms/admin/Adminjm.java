@@ -7,6 +7,7 @@ import lombok.SneakyThrows;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -21,7 +22,6 @@ public class Adminjm extends JFrame implements ActionListener{
 
     private JButton readerwh;
     private JButton bookwh;
-    private JButton back;
     private JButton setinformation;
     private JButton exit;
 
@@ -63,7 +63,7 @@ public class Adminjm extends JFrame implements ActionListener{
         bookwh.setForeground(Color.blue);
         add(bookwh);
 
-        back=new JButton("返回");
+        new JButton("返回");
         readerwh.setBounds(85,120,90,40);
         readerwh.setForeground(Color.blue);
         add(readerwh);
@@ -92,12 +92,22 @@ public class Adminjm extends JFrame implements ActionListener{
         // TODO Auto-generated method stub
 
         if (e.getSource()==readerwh) {
-            new ReaderCheck("读者维护",name);//跳转到目标窗口
+            try {
+                new ReaderCheck("读者维护",name);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }//跳转到目标窗口
             this.dispose();//关闭此窗口口
         }
 
         if (e.getSource()==bookwh) {
-            new BookCheck("图书维护",name);//跳转到目标窗口
+            try {
+                new BookCheck("图书维护",name);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }//跳转到目标窗口
             this.dispose();//关闭此窗口口
         }
 

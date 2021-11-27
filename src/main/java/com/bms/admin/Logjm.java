@@ -83,12 +83,22 @@ public class Logjm extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource()==back) {
-            new BookCheck("图书信息",name);
+            try {
+                new BookCheck("图书信息",name);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
             this.dispose();
         }
 
         if(e.getSource()==refresh){
-            new Logjm("日志信息",name);
+            try {
+                new Logjm("日志信息",name);
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
             this.dispose();
         }
     }

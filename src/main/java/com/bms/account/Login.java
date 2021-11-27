@@ -145,10 +145,4 @@ public class Login extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(getParent(), "忘记密码，我们也不能帮你哦，嘻嘻","提示" , JOptionPane.INFORMATION_MESSAGE);
         }//关闭此窗口口
     }
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        new Login("图书管理系统");
-    }
-
 }
