@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
@@ -68,7 +69,12 @@ public class Readerjm extends JFrame implements ActionListener{
         // TODO Auto-generated method stub
 
         if (e.getSource()==bookcheck) {
-            new BookCheckReader("图书信息",readId,name);
+            try {
+				new BookCheckReader("图书信息",readId,name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 

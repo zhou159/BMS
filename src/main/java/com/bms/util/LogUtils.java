@@ -6,18 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 
-public class LogUtils {
-    public static Connection connection;
-
-    static {
-        try {
-            connection = DatabaseConnect.getConnection();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-    }
+public class LogUtils{
+    static Connection connection = DatabaseConnect.getConnection();
 
     public static void createLog(String text) throws SQLException {
         PreparedStatement pstm = connection.prepareStatement("insert into log (text,time) values (?,?)");

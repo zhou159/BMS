@@ -14,7 +14,12 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class BorrowBooks extends JFrame implements ActionListener {
-    String name = null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	String name = null;
 
     Connection connection = DatabaseConnect.getConnection();
 
@@ -138,12 +143,22 @@ public class BorrowBooks extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource()==back) {
-            new BookCheck("图书信息",name);
+            try {
+				new BookCheck("图书信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
         if(e.getSource()==refresh){
-            new BorrowBooks("图书借阅情况",name);
+            try {
+				new BorrowBooks("图书借阅情况",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

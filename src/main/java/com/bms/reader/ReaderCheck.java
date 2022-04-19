@@ -17,13 +17,17 @@ import javax.swing.*;
 
 public class ReaderCheck extends JFrame implements ActionListener {
 
-    Connection connection = DatabaseConnect.getConnection();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Connection connection = DatabaseConnect.getConnection();
 
     JTable reader = new JTable();
 
     String name = null;
 
-    private JButton confirm;
     private JButton readerModification;
     private JButton readerDelete;
     private JButton back;
@@ -34,8 +38,7 @@ public class ReaderCheck extends JFrame implements ActionListener {
     private JLabel table4;
     private JLabel table5;
     private JLabel table6;
-    private JLabel table7;
-
+    
     public ReaderCheck(String title,String name) throws SQLException {
         this.setTitle(title);
         this.setSize(970,700);
@@ -51,7 +54,7 @@ public class ReaderCheck extends JFrame implements ActionListener {
 
     }
     public void init() throws SQLException {
-        PreparedStatement pstm = connection.prepareStatement("select * from reader");
+        PreparedStatement pstm = connection.prepareStatement("select * from reader where type = '读者'");
         ResultSet rs = pstm.executeQuery();
 
         Vector<String> columnNames = new Vector<>();
@@ -142,18 +145,30 @@ public class ReaderCheck extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (e.getSource()==readerModification) {
-            new ReaderModification("修改读者信息",name);
+            try {
+				new ReaderModification("修改读者信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
         if(e.getSource()==readerDelete){
             int count = reader.getSelectedRow();
             String id = reader.getValueAt(count,0).toString();
-            PreparedStatement pstm = connection.prepareStatement("delete from reader where id=?");
-            pstm.setInt(1,Integer.valueOf(id).intValue());
-            pstm.executeUpdate();
-            new ReaderCheck("读者维护",name);
-            this.dispose();
+            PreparedStatement pstm;
+			try {
+				pstm = connection.prepareStatement("delete from reader where id=?");
+				pstm.setInt(1,Integer.valueOf(id).intValue());
+	            pstm.executeUpdate();
+	            new ReaderCheck("读者维护",name);
+	            this.dispose();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            
         }
 
         if (e.getSource()==back) {
@@ -162,7 +177,12 @@ public class ReaderCheck extends JFrame implements ActionListener {
         }
 
         if(e.getSource()==refresh){
-            new ReaderCheck("读者信息",name);
+            try {
+				new ReaderCheck("读者信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

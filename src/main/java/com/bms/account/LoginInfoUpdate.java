@@ -16,7 +16,11 @@ import javax.swing.*;
 
 public class LoginInfoUpdate extends JFrame implements ActionListener{
 
-    Connection connection = DatabaseConnect.getConnection();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	Connection connection = DatabaseConnect.getConnection();
     String name = null;
     int readId = 0;
 
@@ -24,12 +28,10 @@ public class LoginInfoUpdate extends JFrame implements ActionListener{
     private JLabel RnameLabel;
     private JLabel RageLabel;
     private JLabel RsexLabel;
-    private JLabel RamountLabel;
     private JLabel RprofessionLabel;
     private JTextField RnameTextField;
     private JTextField RageTextField;
     private JTextField RsexTextField;
-    private JTextField RamountTextField;
     private JTextField RprofessionTextField;
     private JButton confirm;
     private JButton exit;

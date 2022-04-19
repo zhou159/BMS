@@ -15,7 +15,11 @@ public class Register extends JFrame implements ActionListener {
 
 
 
-    private JLabel  newAaccountLabel;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private JLabel  newAaccountLabel;
     private JLabel  ApasswordLabel;
     private JTextField newAaccountTextField;
     private JPasswordField ApasswordPasswordField;
@@ -67,8 +71,6 @@ public class Register extends JFrame implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e) {
-        DatabaseConnect db = new DatabaseConnect();
-        ResultSet rs;
         if (e.getSource()==confirm) {
             try {
                 Connection connection = DatabaseConnect.getConnection();

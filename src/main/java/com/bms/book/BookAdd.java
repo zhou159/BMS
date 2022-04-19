@@ -146,7 +146,12 @@ public class BookAdd extends JFrame implements ActionListener{
         }
 
         if (e.getSource()==exit) {
-            new BookCheck("图书信息",name);
+            try {
+				new BookCheck("图书信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

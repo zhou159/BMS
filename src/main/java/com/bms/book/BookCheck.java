@@ -20,11 +20,17 @@ import lombok.SneakyThrows;
 
 public class BookCheck extends JFrame implements ActionListener {
 
-    Connection connection = DatabaseConnect.getConnection();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Connection connection = DatabaseConnect.getConnection();
 
     JTable book = new JTable(100,6);
 
     String name = null;
+    int bookId = 0;
 
     private JButton bookadd;
     private JButton bookModification;
@@ -125,13 +131,36 @@ public class BookCheck extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if(e.getSource()==bookadd){
-            new BookAdd("新增图书信息",name);
+            try {
+				new BookAdd("新增图书信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
         if (e.getSource()==bookModification) {
-            new BookModification("修改图书信息",name);
-            this.dispose();
+        	int count = book.getSelectedRow(); //表格中选中行
+        	if(count < 0) {
+        		JOptionPane.showMessageDialog(getParent(), "请先选择图书！","提示" , JOptionPane.INFORMATION_MESSAGE);
+        	}else {
+        		String id = book.getValueAt(count,0).toString();
+        		bookId = Integer.valueOf(id).intValue();//根据选中行，获取表格列
+        		try {
+                	if(bookId == 0) {
+                		JOptionPane.showMessageDialog(getParent(), "请先选择图书！","提示" , JOptionPane.INFORMATION_MESSAGE);
+                	}else {
+                		new BookModification("修改图书信息",name,bookId);
+                		this.dispose();
+                	}
+    				
+    			} catch (SQLException e1) {
+    				// TODO Auto-generated catch block
+    				e1.printStackTrace();
+    			}
+        	}
+    
         }
 
         if (e.getSource()==bookDelete) {
@@ -140,22 +169,34 @@ public class BookCheck extends JFrame implements ActionListener {
             int count = book.getSelectedRow();
             String id = book.getValueAt(count,0).toString();
 
-            PreparedStatement pstm2 = connection.prepareStatement("select * from book where id=?");
-            pstm2.setInt(1,Integer.valueOf(id).intValue());
-            ResultSet resultSet = pstm2.executeQuery();
+            PreparedStatement pstm2;
+			try {
+				pstm2 = connection.prepareStatement("select * from book where id=?");
+				pstm2.setInt(1,Integer.valueOf(id).intValue());
+	            ResultSet resultSet = pstm2.executeQuery();
 
-            PreparedStatement pstm = connection.prepareStatement("delete from book where id=?");
-            pstm.setInt(1,Integer.valueOf(id).intValue());
-            pstm.executeUpdate();
-            if(resultSet.next()){
-                LogUtils.createLog(name+",删除了图书:"+resultSet.getString(2));
-                new BookCheck("图书维护",name);
-                this.dispose();
-            }
+	            PreparedStatement pstm = connection.prepareStatement("delete from book where id=?");
+	            pstm.setInt(1,Integer.valueOf(id).intValue());
+	            pstm.executeUpdate();
+	            if(resultSet.next()){
+	                LogUtils.createLog(name+",删除了图书:"+resultSet.getString(2));
+	                new BookCheck("图书维护",name);
+	                this.dispose();
+	            }
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            
         }
 
         if (e.getSource()==bookBr){
-            new BorrowBooks("图书借阅情况",name);
+            try {
+				new BorrowBooks("图书借阅情况",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
@@ -165,12 +206,22 @@ public class BookCheck extends JFrame implements ActionListener {
         }
 
         if(e.getSource()==refresh){
-            new BookCheck("图书信息",name);
+            try {
+				new BookCheck("图书信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
         if(e.getSource()==log){
-            new Logjm("日志信息",name);
+            try {
+				new Logjm("日志信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }
