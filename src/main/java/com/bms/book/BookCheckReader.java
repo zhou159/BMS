@@ -19,7 +19,11 @@ import javax.swing.*;
 
 public class BookCheckReader extends JFrame implements ActionListener {
 
-    int readId = 0;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int readId = 0;
     String name = null;
 
     Connection connection = DatabaseConnect.getConnection();
@@ -159,17 +163,32 @@ public class BookCheckReader extends JFrame implements ActionListener {
 
 
         if (e.getSource()==bookReturn) {
-            new BookReturn("还书",readId,name);
+            try {
+				new BookReturn("还书",readId,name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
         if (e.getSource()==bookBorrow) {
-            new BookBorrow("借书",readId,name);
+            try {
+				new BookBorrow("借书",readId,name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
         if (e.getSource()==readerBookBorrow){
-            new ReaderBorrowBooks("已借阅书籍",name,readId);
+            try {
+				new ReaderBorrowBooks("已借阅书籍",name,readId);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
 
@@ -179,7 +198,12 @@ public class BookCheckReader extends JFrame implements ActionListener {
         }
 
         if(e.getSource()==refresh){
-            new BookCheckReader("图书信息",readId,name);
+            try {
+				new BookCheckReader("图书信息",readId,name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

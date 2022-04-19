@@ -15,19 +15,19 @@ import javax.swing.*;
 
 public class BookBorrow extends JFrame implements ActionListener{
 
-    int readId = 0;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int readId = 0;
     String name = null;
 
     Connection connection = DatabaseConnect.getConnection();
 
-    private JLabel  ridLabel;
     private JLabel  bidLabel;
     private JLabel  amountLabel;
-    private JLabel  borrowtimeLabel;
-    private JTextField ridTextField;
     private JTextField bidTextField;
     private JTextField amountTextField;
-    private JTextField borrowtimeTextField;
     private JButton confirm;
     private JButton back;
 
@@ -160,7 +160,12 @@ public class BookBorrow extends JFrame implements ActionListener{
         }
 
         if (e.getSource()==back) {
-            new BookCheckReader("图书信息",readId,name);
+            try {
+				new BookCheckReader("图书信息",readId,name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

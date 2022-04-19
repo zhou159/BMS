@@ -20,6 +20,7 @@ public class BookModification extends JFrame implements ActionListener{
 
     Connection connect = DatabaseConnect.getConnection();
     String name = null;
+    int bookId = 0;
 
     private JLabel  BidLabel;
     private JLabel  fill;
@@ -40,7 +41,7 @@ public class BookModification extends JFrame implements ActionListener{
     private JButton confirm;
     private JButton back;
 
-    public BookModification(String title,String name) throws SQLException {
+    public BookModification(String title,String name,int bookId) throws SQLException {
 
         this.setTitle(title);
         this.setSize(300,450);
@@ -49,15 +50,16 @@ public class BookModification extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         this.name = name;
+        this.bookId = bookId;
 
         init();
 
         this.setVisible(true);
     }
 
-    public void init() {
+    public void init() throws SQLException {
         this.setLayout(null);//清空整个布局管理器
-
+        
         BidLabel=new JLabel("请输入你想要修改的图书ID：");
         BidLabel.setBounds(25,5,170,25);
         BidLabel.setForeground(Color.blue);
@@ -90,6 +92,7 @@ public class BookModification extends JFrame implements ActionListener{
 
         BidTextField=new JTextField();
         BidTextField.setBounds(25,30,150,25);
+        BidTextField.setText(String.valueOf(bookId));
         add(BidTextField);
 
         BnameTextField=new JTextField();
@@ -150,14 +153,14 @@ public class BookModification extends JFrame implements ActionListener{
                     BstockTextField.setText(resultSet.getString(5));
                     BpublishhouseTextField.setText(resultSet.getString(6));
 
-                    //多次查询时，如果上一次没有结果，清楚上一次遗留的信息
+                    //多次查询时，如果上一次没有结果，清除上一次遗留的信息
                     fill.setText("请输入你要修改的信息：");
                     fill.setForeground(Color.blue);
                 }else {
-                    fill.setText("未找到该读者");
+                    fill.setText("未找到该书籍");
                     fill.setForeground(Color.red);
 
-                    //多次查询时，如果下一次没有结果，清楚上一次遗留的信息
+                    //多次查询时，如果下一次没有结果，清除上一次遗留的信息
                     BnameTextField.setText("");
                     BauthorTextField.setText("");
                     BpriceTextField.setText("");
@@ -202,7 +205,12 @@ public class BookModification extends JFrame implements ActionListener{
             }
         }
         if (e.getSource()==back) {
-            new BookCheck("图书信息",name);
+            try {
+				new BookCheck("图书信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

@@ -11,11 +11,14 @@ import java.sql.SQLException;
 
 import javax.swing.*;
 
-
-@SuppressWarnings("serial")
 public class Adminjm extends JFrame implements ActionListener{
 
-    String name = null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	String name = null;
 
     private JLabel  welcome;
     private JLabel  choose;

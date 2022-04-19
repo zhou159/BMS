@@ -4,7 +4,6 @@ import com.bms.dao.DatabaseConnect;
 import lombok.SneakyThrows;
 
 import java.awt.Color;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -30,16 +29,12 @@ public class ReaderModification extends JFrame implements ActionListener{
     private JLabel RnameLabel;
     private JLabel RageLabel;
     private JLabel RsexLabel;
-    private JLabel RamountLabel;
-    private JLabel RforfeitLabel;
     private JLabel RprofessionLabel;
 
     private JTextField ridTextField;
     private JTextField RnameTextField;
     private JTextField RageTextField;
     private JTextField RsexTextField;
-    private JTextField RamountTextField;
-    private JTextField RforfeitTextField;
     private JTextField RprofessionTextField;
 
     private JButton select;
@@ -184,7 +179,12 @@ public class ReaderModification extends JFrame implements ActionListener{
         }
 
         if(e.getSource()==back){
-            new ReaderCheck("读者信息",name);
+            try {
+				new ReaderCheck("读者信息",name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

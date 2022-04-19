@@ -9,14 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class Login extends JFrame implements ActionListener {
 
-    String name = null;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String name = null;
     int readerId = 0;
 
     PreparedStatement pstm=null;
@@ -30,10 +36,11 @@ public class Login extends JFrame implements ActionListener {
     private JButton cancel;
     private JButton register;
     private JButton wjma;
+    private JButton fileChoose;
 
     public Login(String title){
 
-        this.setTitle(title);//设置窗口标题
+        this.setTitle(title);//设置窗口标题
         this.setSize(380,300);//设置窗口大小
         this.setResizable(false);//设置窗口大小是否可变
         this.setLocationRelativeTo(getOwner());//窗口出现位置,getOwner:正中间
@@ -48,7 +55,7 @@ public class Login extends JFrame implements ActionListener {
     public void init() {
         this.setLayout(null);//清空整个布局管理器
 
-        AaccountLabel=new JLabel("账号:");
+        AaccountLabel=new JLabel("账户:");
         AaccountLabel.setBounds(75,35,50,25);
         add(AaccountLabel);
 
@@ -64,7 +71,7 @@ public class Login extends JFrame implements ActionListener {
         ApasswordPasswordField.setBounds(110,80,150,25);
         add(ApasswordPasswordField);
 
-        login=new JButton("登陆");
+        login=new JButton("登录");
         login.setBounds(75,140,90,40);
         login.setBackground(Color.blue);
         add(login);
@@ -78,7 +85,11 @@ public class Login extends JFrame implements ActionListener {
         register.setBackground(Color.yellow);
         add(register);
 
-        wjma=new JButton("忘记密码？ ");
+        fileChoose = new JButton("文件选择");
+        fileChoose.setBounds(250,200,150,30);
+        add(fileChoose);
+
+        wjma=new JButton("忘记密码");
         wjma.setBounds(260,80,100,25);
         add(wjma);
 
@@ -86,10 +97,10 @@ public class Login extends JFrame implements ActionListener {
         cancel.addActionListener(this);
         register.addActionListener(this);
         wjma.addActionListener(this);
+        fileChoose.addActionListener(this);
     }
 
     @SneakyThrows
-    @SuppressWarnings("unlikely-arg-type")
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
@@ -98,34 +109,40 @@ public class Login extends JFrame implements ActionListener {
             if(AaccountTextField.getText().trim().equals("") || new String(ApasswordPasswordField.getPassword()).trim().equals("")) {
                 JOptionPane.showMessageDialog(getParent(), "账号、密码不能为空！","提示" , JOptionPane.INFORMATION_MESSAGE);
             }else {
-                connection = DatabaseConnect.getConnection();
-                pstm = connection.prepareStatement("select * from reader where account=? and password=?");
+                try {
+					connection = DatabaseConnect.getConnection();
+					pstm = connection.prepareStatement("select * from reader where account=? and password=?");
+					pstm.setString(1,AaccountTextField.getText().trim());
+					pstm.setString(2,new String(ApasswordPasswordField.getPassword()).trim());
+					ResultSet rs=pstm.executeQuery();
+	                if(!rs.next()) {
+	                    JOptionPane.showMessageDialog(getParent(), "请输入正确的账号密码！","提示" , JOptionPane.INFORMATION_MESSAGE);
+	                }else {
+	                    if(rs.getString(2)==null){
+	                        readerId = rs.getInt(1);
+	                        new LoginInfoUpdate("读者信息绑定",name,readerId);
+	                        this.dispose();
+	                    }else {
+	                        if(rs.getString(8).equals("读者")){
+	                            readerId = rs.getInt(1);
+	                            name= rs.getString(8) + ":" + rs.getString(2);
+	                            new Readerjm("读者界面",name,readerId);
+	                            this.dispose();
+	                        }else {
+	                            name = rs.getString(8) + ":" + rs.getString(2);
 
-                pstm.setString(1,AaccountTextField.getText().trim());
-                pstm.setString(2,new String(ApasswordPasswordField.getPassword()).trim());
+	                            new Adminjm("管理员界面",name);
+	                            this.dispose();
+	                        }
+	                    }
+	                }
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                
 
-                ResultSet rs=pstm.executeQuery();
-                if(!rs.next()) {
-                    JOptionPane.showMessageDialog(getParent(), "请输入正确的账号密码！","提示" , JOptionPane.INFORMATION_MESSAGE);
-                }else {
-                    if(rs.getString(2)==null){
-                        readerId = rs.getInt(1);
-                        new LoginInfoUpdate("读者信息绑定",name,readerId);
-                        this.dispose();
-                    }else {
-                        if(rs.getString(8).equals("读者")){
-                            readerId = rs.getInt(1);
-                            name= rs.getString(8) + ":" + rs.getString(2);
-                            new Readerjm("读者界面",name,readerId);
-                            this.dispose();
-                        }else {
-                            name = rs.getString(8) + ":" + rs.getString(2);
-
-                            new Adminjm("管理员界面",name);
-                            this.dispose();
-                        }
-                    }
-                }
             }
 
         }//判断管理员还是读者、默认只有admin一个管理员，
@@ -143,6 +160,14 @@ public class Login extends JFrame implements ActionListener {
 
         if (e.getSource()==wjma) {
             JOptionPane.showMessageDialog(getParent(), "忘记密码，我们也不能帮你哦，嘻嘻","提示" , JOptionPane.INFORMATION_MESSAGE);
-        }//关闭此窗口口
+        }//鍏抽棴姝ょ獥鍙ｅ彛
+
+        if(e.getSource() == fileChoose){
+            JFileChooser chooser = new JFileChooser();
+            chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+            chooser.showDialog(new JLabel(), "图书管理系统");
+            File file = chooser.getSelectedFile();
+            AaccountTextField.setText(file.getName());
+        }
     }
 }

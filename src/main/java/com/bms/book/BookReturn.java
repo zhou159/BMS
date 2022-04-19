@@ -16,7 +16,12 @@ import javax.swing.*;
 
 public class BookReturn extends JFrame implements ActionListener{
 
-    Connection connection = DatabaseConnect.getConnection();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Connection connection = DatabaseConnect.getConnection();
 
     int readId = 0;
     String name = null;
@@ -142,7 +147,12 @@ public class BookReturn extends JFrame implements ActionListener{
         }
 
         if (e.getSource()==back) {
-            new BookCheckReader("图书信息",readId,name);
+            try {
+				new BookCheckReader("图书信息",readId,name);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
             this.dispose();
         }
     }

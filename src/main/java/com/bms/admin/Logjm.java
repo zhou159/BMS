@@ -15,7 +15,12 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 public class Logjm extends JFrame implements ActionListener {
-    Connection connection = DatabaseConnect.getConnection();
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	Connection connection = DatabaseConnect.getConnection();
 
     String name = null;
 
