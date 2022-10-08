@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.bms2.mapper.LoginMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhou.bms2.entity.Login">
+            <id property="login_id" column="login_id" jdbcType="VARCHAR"/>
+            <result property="login_account" column="login_account" jdbcType="VARCHAR"/>
+            <result property="login_password" column="login_password" jdbcType="VARCHAR"/>
+            <result property="reader_id" column="reader_id" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        login_id,login_account,login_password,
+        reader_id
+    </sql>
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.bms2.mapper.BrMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhou.bms2.entity.Br">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="reader_id" column="reader_id" jdbcType="INTEGER"/>
+            <result property="book_id" column="book_id" jdbcType="INTEGER"/>
+            <result property="borrowtime" column="borrowtime" jdbcType="TIMESTAMP"/>
+            <result property="returntime" column="returntime" jdbcType="TIMESTAMP"/>
+            <result property="amount" column="amount" jdbcType="INTEGER"/>
+            <result property="return_status" column="return_status" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,reader_id,book_id,
+        borrowtime,returntime,amount,
+        return_status
+    </sql>
+</mapper>

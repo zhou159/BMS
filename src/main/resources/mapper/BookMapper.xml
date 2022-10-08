@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.bms2.mapper.BookMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhou.bms2.entity.Book">
+            <id property="book_id" column="book_id" jdbcType="INTEGER"/>
+            <result property="book_name" column="book_name" jdbcType="VARCHAR"/>
+            <result property="book_author" column="book_author" jdbcType="VARCHAR"/>
+            <result property="book_price" column="book_price" jdbcType="DECIMAL"/>
+            <result property="book_stock" column="book_stock" jdbcType="INTEGER"/>
+            <result property="publishhouse_id" column="publishhouse_id" jdbcType="VARCHAR"/>
+            <result property="book_deleted" column="book_deleted" jdbcType="TINYINT"/>
+            <result property="book_isbn" column="book_isbn" jdbcType="VARCHAR"/>
+            <result property="book_page" column="book_page" jdbcType="VARCHAR"/>
+            <result property="book_format" column="book_format" jdbcType="INTEGER"/>
+            <result property="book_introductory" column="book_introductory" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        book_id,book_name,book_author,
+        book_price,book_stock,publishhouse_id,
+        book_deleted,book_isbn,book_page,
+        book_format,book_introductory
+    </sql>
+</mapper>
