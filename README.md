@@ -6,6 +6,8 @@ BMS初始版本是在初学Java时使用Java图形开发工具之一的swing及�
 # 简介
 BMS2.0采用SpringBoot + JavaFX + MybatisPlus开发。
 
+Java FX 可视化开发工具：SceneBuilder。[下载地址](https://gluonhq.com/products/scene-builder/)
+
 # 工具版本
 - Spring Boot：2.7.3
 - Mybatis Plus：3.5.2
