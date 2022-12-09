@@ -16,8 +16,8 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements LoginService {
 
     @Override
-    public Boolean login(Login login) {
-        return this.baseMapper.exists(
+    public Login login(Login login) {
+        return this.baseMapper.selectOne(
                 new LambdaQueryWrapper<Login>()
                         .eq(Login::getAccount, login.getAccount())
                         .eq(Login::getPassword, login.getPassword()));

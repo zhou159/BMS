@@ -19,19 +19,19 @@
                 <Font size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="accountTextField" layoutX="168.0" layoutY="50.0" prefHeight="31.0" prefWidth="241.0" />
-        <PasswordField fx:id="passwordTextField" layoutX="168.0" layoutY="122.0" prefHeight="31.0" prefWidth="241.0" />
-        <Button fx:id="btnLogin" layoutX="81.0" layoutY="216.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="53.0" prefWidth="90.0" style="-fx-border-color: blue; -fx-border-width: 1px; -fx-border-radius: 5px; -fx-background-color: blue;" text="登录" textFill="WHITE">
+        <TextField fx:id="accountTextField" layoutX="168.0" layoutY="50.0" onMouseClicked="#textFieldClickListener" prefHeight="31.0" prefWidth="241.0" />
+        <PasswordField fx:id="passwordTextField" layoutX="168.0" layoutY="122.0" onMouseClicked="#textFieldClickListener" prefHeight="31.0" prefWidth="241.0" />
+        <Button fx:id="btnLogin" layoutX="81.0" layoutY="216.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="53.0" prefWidth="90.0" style="-fx-border-color: blue; -fx-border-width: 1px; -fx-background-color: blue; -fx-border-radius: 15px; -fx-background-radius: 15px;" text="登录" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Light Italic" size="24.0" />
             </font>
         </Button>
-        <Button layoutX="319.0" layoutY="216.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 5px;" text="重置">
+        <Button layoutX="319.0" layoutY="216.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 15px; -fx-background-radius: 15px;" text="重置">
             <font>
                 <Font name="Segoe UI Light" size="24.0" />
             </font>
         </Button>
-
-        <Label fx:id="welcomeText" layoutX="288.0" layoutY="269.0" />
+      <Label fx:id="nameTip" layoutX="168.0" layoutY="90.0" prefHeight="22.0" prefWidth="241.0" textFill="RED" />
+      <Label fx:id="passwordTip" layoutX="168.0" layoutY="159.0" prefHeight="22.0" prefWidth="241.0" textFill="RED" />
     </children>
 </Pane>

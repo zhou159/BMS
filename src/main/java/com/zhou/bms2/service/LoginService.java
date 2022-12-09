@@ -10,5 +10,5 @@ import com.zhou.bms2.entity.Login;
  */
 public interface LoginService extends IService<Login> {
 
-    Boolean login(Login login);
+    Login login(Login login);
 }
