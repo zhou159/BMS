@@ -2,8 +2,8 @@ package com.zhou.bms2.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhou.bms2.entity.Log;
-import com.zhou.bms2.service.LogService;
 import com.zhou.bms2.mapper.LogMapper;
+import com.zhou.bms2.service.LogService;
 import org.springframework.stereotype.Service;
 
 /**

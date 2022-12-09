@@ -2,8 +2,8 @@ package com.zhou.bms2.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhou.bms2.entity.Br;
-import com.zhou.bms2.service.BrService;
 import com.zhou.bms2.mapper.BrMapper;
+import com.zhou.bms2.service.BrService;
 import org.springframework.stereotype.Service;
 
 /**

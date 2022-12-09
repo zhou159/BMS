@@ -1,7 +1,7 @@
 package com.zhou.bms2.mapper;
 
-import com.zhou.bms2.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.zhou.bms2.entity.Role;
 
 /**
 * @author Administrator

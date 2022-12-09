@@ -1,7 +1,7 @@
 package com.zhou.bms2.service;
 
-import com.zhou.bms2.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.zhou.bms2.entity.Role;
 
 /**
 * @author Administrator

@@ -2,8 +2,8 @@ package com.zhou.bms2.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhou.bms2.entity.Role;
-import com.zhou.bms2.service.RoleService;
 import com.zhou.bms2.mapper.RoleMapper;
+import com.zhou.bms2.service.RoleService;
 import org.springframework.stereotype.Service;
 
 /**
