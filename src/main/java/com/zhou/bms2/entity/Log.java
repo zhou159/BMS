@@ -10,7 +10,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * @TableName log
+ * log
+ *
+ * @author zhouxiong
  */
 @Data
 @AllArgsConstructor

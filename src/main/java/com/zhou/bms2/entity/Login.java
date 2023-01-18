@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * login
+ *
  * @author zhouxiong
  */
 @Data
@@ -34,10 +36,10 @@ public class Login implements Serializable {
     /** 登录账户所绑定读者id */
     @TableField(value = "reader_id")
     private String readerId;
-    
+
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-    
+
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }

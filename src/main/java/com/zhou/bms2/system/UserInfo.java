@@ -7,9 +7,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
+ * 用户信息
+ *
  * @author zhouxiong
  * @version v1.0
- * 2022/12/9 15:32
+ * @since 2022/12/9 15:32
  */
 @Component
 @Data

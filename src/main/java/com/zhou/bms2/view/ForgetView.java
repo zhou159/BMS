@@ -6,7 +6,7 @@ import de.felixroske.jfxsupport.FXMLView;
 /**
  * @author zhouxiong
  * @version v1.0
- * @since 2022/6/8 17:45
+ * @since 2023/1/18 16:41
  */
-@FXMLView("/views/login.fxml")
-public class LoginView extends AbstractFxmlView {}
+@FXMLView("/views/forget.fxml")
+public class ForgetView extends AbstractFxmlView {}

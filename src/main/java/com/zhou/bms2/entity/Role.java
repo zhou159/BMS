@@ -12,6 +12,8 @@ import lombok.NoArgsConstructor;
 import java.io.Serializable;
 
 /**
+ * role
+ *
  * @author zhouxiong
  */
 @Data
@@ -24,11 +26,11 @@ public class Role implements Serializable {
     /** 角色id */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
-    
+
     /** 角色名字 */
     @TableField(value = "name")
     private String name;
-    
+
     @TableField(value = "label")
     private String label;
 }

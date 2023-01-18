@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="348.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zhou.bms2.controller.LoginController">
-    <children>
-        <Label layoutX="91.0" layoutY="54.0" prefHeight="22.0" prefWidth="70.0" text="用户名：">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Label>
-        <Label layoutX="91.0" layoutY="126.0" prefHeight="22.0" prefWidth="70.0" text="密  码：">
-            <font>
-                <Font size="16.0" />
-            </font>
-        </Label>
-        <TextField fx:id="accountTextField" layoutX="168.0" layoutY="50.0" onMouseClicked="#textFieldClickListener" prefHeight="31.0" prefWidth="241.0" />
-        <PasswordField fx:id="passwordTextField" layoutX="168.0" layoutY="122.0" onMouseClicked="#textFieldClickListener" prefHeight="31.0" prefWidth="241.0" />
-        <Button fx:id="btnLogin" layoutX="81.0" layoutY="216.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="53.0" prefWidth="90.0" style="-fx-border-color: blue; -fx-border-width: 1px; -fx-background-color: blue; -fx-border-radius: 15px; -fx-background-radius: 15px;" text="登录" textFill="WHITE">
-            <font>
-                <Font name="Segoe UI Light Italic" size="24.0" />
-            </font>
-        </Button>
-        <Button layoutX="319.0" layoutY="216.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 15px; -fx-background-radius: 15px;" text="重置">
-            <font>
-                <Font name="Segoe UI Light" size="24.0" />
-            </font>
-        </Button>
-      <Label fx:id="nameTip" layoutX="168.0" layoutY="90.0" prefHeight="22.0" prefWidth="241.0" textFill="RED" />
-      <Label fx:id="passwordTip" layoutX="168.0" layoutY="159.0" prefHeight="22.0" prefWidth="241.0" textFill="RED" />
-    </children>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="354.0"
+      prefWidth="541.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.zhou.bms2.controller.LoginController">
+    <Label layoutX="91.0" layoutY="54.0" prefHeight="22.0" prefWidth="70.0" text="用户名：">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Label>
+    <Label layoutX="91.0" layoutY="126.0" prefHeight="22.0" prefWidth="70.0" text="密  码：">
+        <font>
+            <Font size="16.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="accountTextField" layoutX="168.0" layoutY="50.0" onMouseClicked="#textNameFieldClickListener"
+               prefHeight="31.0" prefWidth="241.0"/>
+    <PasswordField fx:id="passwordTextField" layoutX="168.0" layoutY="122.0"
+                   onMouseClicked="#textPasswordFieldClickListener" prefHeight="31.0" prefWidth="241.0"/>
+    <Button layoutX="81.0" layoutY="216.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="53.0"
+            prefWidth="90.0"
+            style="-fx-border-color: blue; -fx-border-width: 1px; -fx-background-color: blue; -fx-border-radius: 15px; -fx-background-radius: 15px;"
+            text="登录" textFill="WHITE">
+        <font>
+            <Font name="Segoe UI Light Italic" size="24.0"/>
+        </font>
+    </Button>
+    <Button layoutX="319.0" layoutY="216.0" mnemonicParsing="false" onAction="#onResetButtonClick" prefHeight="40.0"
+            prefWidth="90.0"
+            style="-fx-border-color: black; -fx-border-width: 1px; -fx-border-radius: 15px; -fx-background-radius: 15px;"
+            text="重置">
+        <font>
+            <Font name="Segoe UI Light" size="24.0"/>
+        </font>
+    </Button>
+    <Label fx:id="nameTip" layoutX="168.0" layoutY="90.0" prefHeight="22.0" prefWidth="241.0" textFill="RED"/>
+    <Label fx:id="passwordTip" layoutX="168.0" layoutY="159.0" prefHeight="22.0" prefWidth="241.0" textFill="RED"/>
+    <Label fx:id="register" layoutX="420.0" layoutY="55.0" prefHeight="22.0" prefWidth="70.0" text="注册账号"
+           onMouseClicked="#textRegisterFieldClickListener"/>
+    <Label fx:id="forget" layoutX="420.0" layoutY="126.0" prefHeight="22.0" prefWidth="70.0" text="忘记密码"
+           onMouseClicked="#textForgetFieldClickListener"/>
 </Pane>

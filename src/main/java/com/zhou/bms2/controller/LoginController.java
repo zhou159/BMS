@@ -2,13 +2,20 @@ package com.zhou.bms2.controller;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.zhou.bms2.BmsApplication;
 import com.zhou.bms2.entity.Login;
 import com.zhou.bms2.service.LoginService;
 import com.zhou.bms2.system.UserInfo;
+import com.zhou.bms2.view.ForgetView;
+import com.zhou.bms2.view.MainView;
+import com.zhou.bms2.view.RegisterView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +29,10 @@ public class LoginController implements Initializable {
     private final LoginService loginService;
     private final UserInfo userInfo;
     @FXML
+    public Label register;
+    @FXML
+    public Label forget;
+    @FXML
     private Label passwordTip;
     @FXML
     private Label nameTip;
@@ -30,8 +41,8 @@ public class LoginController implements Initializable {
     private TextField accountTextField;
     @FXML
     private PasswordField passwordTextField;
-    @FXML
-    private Button btnLogin;
+    
+    
     
     public LoginController(LoginService loginService, UserInfo userInfo){
         this.loginService = loginService;
@@ -69,6 +80,7 @@ public class LoginController implements Initializable {
             alert.show();
         }else {
             userInfo.setUserId(login.getReaderId());
+            BmsApplication.showView(MainView.class);
         }
     }
     
@@ -77,9 +89,23 @@ public class LoginController implements Initializable {
      * 点击过后，会清除输入框下方提示内容
      */
     @FXML
-    protected void textFieldClickListener(){
+    protected void textNameFieldClickListener(){
         nameTip.setText("");
+    }
+    
+    @FXML
+    protected void textPasswordFieldClickListener(){
         passwordTip.setText("");
+    }
+    
+    @FXML
+    protected void textRegisterFieldClickListener(){
+        BmsApplication.showView(RegisterView.class);
+    }
+    
+    @FXML
+    protected void textForgetFieldClickListener(){
+        BmsApplication.showView(ForgetView.class);
     }
     
     /**

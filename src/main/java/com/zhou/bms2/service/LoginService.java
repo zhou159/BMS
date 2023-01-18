@@ -4,9 +4,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.zhou.bms2.entity.Login;
 
 /**
+ * 针对表【login】的数据库操作Service
+ *
  * @author zhouxiong
- * @description 针对表【login】的数据库操作Service
- * @createDate 2022-06-08 16:51:07
+ * @since 2022/06/08 16:51:07
  */
 public interface LoginService extends IService<Login> {
 

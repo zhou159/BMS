@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
+ * publishing_house
+ *
  * @author zhouxiong
  */
 @Data
@@ -33,10 +35,10 @@ public class PublishingHouse implements Serializable {
     @TableLogic
     @TableField(value = "deleted")
     private Integer deleted;
-    
+
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-    
+
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }

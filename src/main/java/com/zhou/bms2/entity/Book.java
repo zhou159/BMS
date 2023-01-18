@@ -11,7 +11,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- *  book
+ * book
+ *
  * @author zhouxiong
  */
 @Data
@@ -34,7 +35,7 @@ public class Book implements Serializable {
     /** 作者 */
     @TableField(value = "author")
     private String author;
-    
+
     @TableField(value = "author_nationality")
     private String authorNationality;
 
@@ -70,19 +71,19 @@ public class Book implements Serializable {
     /** 书籍简介 */
     @TableField(value = "intro")
     private String intro;
-    
+
     @TableField(value = "language")
     private String language;
-    
+
     @TableField(value = "translate")
     private Integer translate;
-    
+
     @TableField(value = "translator")
     private String translator;
-    
+
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-    
+
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }
