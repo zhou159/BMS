@@ -17,10 +17,10 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements LoginService {
 
     @Override
-    public Login login(Login login) {
+    public Login login(String account, String password) {
         return this.baseMapper.selectOne(
                 new LambdaQueryWrapper<Login>()
-                        .eq(Login::getAccount, login.getAccount())
-                        .eq(Login::getPassword, login.getPassword()));
+                        .eq(Login::getAccount, account)
+                        .eq(Login::getPassword, password));
     }
 }

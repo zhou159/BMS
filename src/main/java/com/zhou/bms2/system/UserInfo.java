@@ -21,4 +21,5 @@ import org.springframework.stereotype.Component;
 public class UserInfo {
     private String account;
     private String userId;
+    private String name;
 }

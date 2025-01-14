@@ -1,6 +1,7 @@
 package com.zhou.bms2.controller;
 
 import de.felixroske.jfxsupport.FXMLController;
+import javafx.scene.image.ImageView;
 
 /**
  * @author zhouxiong
@@ -8,4 +9,6 @@ import de.felixroske.jfxsupport.FXMLController;
  * @since 2023/1/18 16:42
  */
 @FXMLController
-public class RegisterController {}
+public class RegisterController {
+    public ImageView codeImg;
+}
