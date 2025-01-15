@@ -3,5 +3,20 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhou.bms2.mapper.LoginMapper">
-
+    <select id="queryUserInfo" resultType="com.zhou.bms2.system.UserInfo">
+        select l.account,
+               r.id,
+               r.name,
+               r2.name as roleName,
+               case r.profession
+                   when '0' then '学生'
+                   when '1' then '教职工'
+                   end as type
+        from login l
+                 left join bms.reader r on r.id = l.reader_id
+                 left join bms.reader_role rr on r.id = rr.reader_id
+                 left join bms.role r2 on r2.id = rr.role_id
+        where l.account = #{account}
+          and l.password = #{password}
+    </select>
 </mapper>

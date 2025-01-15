@@ -3,15 +3,9 @@ package com.zhou.bms2.controller;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhou.bms2.BmsApplication;
-import com.zhou.bms2.entity.Login;
-import com.zhou.bms2.entity.Reader;
-import com.zhou.bms2.entity.ReaderRole;
-import com.zhou.bms2.entity.Role;
 import com.zhou.bms2.service.LoginService;
-import com.zhou.bms2.service.ReaderRoleService;
-import com.zhou.bms2.service.ReaderService;
-import com.zhou.bms2.service.RoleService;
 import com.zhou.bms2.system.UserInfo;
+import com.zhou.bms2.util.AlertUtil;
 import com.zhou.bms2.view.AdminMainView;
 import com.zhou.bms2.view.ForgetView;
 import com.zhou.bms2.view.MainView;
@@ -19,7 +13,6 @@ import com.zhou.bms2.view.RegisterView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -34,24 +27,27 @@ import java.util.ResourceBundle;
 @RequiredArgsConstructor
 @FXMLController
 public class LoginController implements Initializable {
-    
+
     private final LoginService loginService;
-    private final ReaderRoleService readerRoleService;
-    private final RoleService roleService;
-    private final ReaderService readerService;
-    private final UserInfo userInfo;
-    
-    @FXML public Label register;
-    @FXML public Label forget;
-    @FXML private Label passwordTip;
-    @FXML private Label nameTip;
-    
-    @FXML private TextField accountTextField;
-    @FXML private PasswordField passwordTextField;
-    
+
+    @FXML
+    public Label register;
+    @FXML
+    public Label forget;
+    @FXML
+    private Label passwordTip;
+    @FXML
+    private Label nameTip;
+
+    @FXML
+    private TextField accountTextField;
+    @FXML
+    private PasswordField passwordTextField;
+
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
-    
+    public void initialize(URL location, ResourceBundle resources) {
+    }
+
     /**
      * 登录按钮点击事件
      */
@@ -59,43 +55,38 @@ public class LoginController implements Initializable {
     protected void onLoginButtonClick() {
         String account = accountTextField.getText();
         String password = passwordTextField.getText();
-        if (StrUtil.isBlank(account)) {
-            nameTip.setText("请输入用户名！");
+        if (!this.checkValue()) {
             return;
         }
-        
-        if (StrUtil.isBlank(password)) {
-            passwordTip.setText("请输入密码！");
+
+        UserInfo loginUser = loginService.login(account, password);
+
+        if (ObjectUtil.isNull(loginUser)) {
+            AlertUtil.showError("账号密码错误，请重新输入！");
             return;
         }
-        
-        Login login = loginService.login(account, password);
-        
-        if (ObjectUtil.isNull(login)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("账号密码错误，请重新输入！");
-            alert.show();
-            return;
-        }
-        
-        Reader reader = readerService.getById(login.getReaderId());
-        
-        userInfo.setUserId(login.getReaderId());
-        userInfo.setAccount(account);
-        userInfo.setName(reader.getName());
-        
-        ReaderRole readerRole = readerRoleService.lambdaQuery().eq(ReaderRole::getReaderId, login.getReaderId()).one();
+
         // 没有找到角色，则使用学生角色
-        if (readerRole != null) {
-            Role role = roleService.getById(readerRole.getRoleId());
-            if (role != null && role.getName().equals("admin")) {
-                BmsApplication.showView(AdminMainView.class);
-                return;
-            }
+        if (StrUtil.isNotBlank(loginUser.getRoleName()) && "admin".equals(loginUser.getRoleName())) {
+            BmsApplication.showView(AdminMainView.class);
+            return;
         }
         BmsApplication.showView(MainView.class);
     }
-    
+
+    private boolean checkValue() {
+        if (StrUtil.isBlank(accountTextField.getText())) {
+            nameTip.setText("请输入用户名！");
+            return false;
+        }
+
+        if (StrUtil.isBlank(passwordTextField.getText())) {
+            passwordTip.setText("请输入密码！");
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 账号、密码输入框监听器
      * 点击过后，会清除输入框下方提示内容
@@ -104,27 +95,30 @@ public class LoginController implements Initializable {
     protected void textNameFieldClickListener() {
         nameTip.setText("");
     }
-    
+
     @FXML
     protected void textPasswordFieldClickListener() {
         passwordTip.setText("");
     }
-    
+
     @FXML
     protected void textRegisterFieldClickListener() {
         BmsApplication.showView(RegisterView.class);
     }
-    
+
     @FXML
     protected void textForgetFieldClickListener() {
         BmsApplication.showView(ForgetView.class);
     }
-    
+
     /**
      * 重置按钮点击事件
      */
     @FXML
     protected void onResetButtonClick() {
-        accountTextField.setText(""); passwordTextField.setText(""); nameTip.setText(""); passwordTip.setText("");
+        accountTextField.setText("");
+        passwordTextField.setText("");
+        nameTip.setText("");
+        passwordTip.setText("");
     }
 }

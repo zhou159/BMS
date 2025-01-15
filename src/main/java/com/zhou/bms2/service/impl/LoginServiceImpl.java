@@ -1,6 +1,5 @@
 package com.zhou.bms2.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhou.bms2.entity.Login;
 import com.zhou.bms2.entity.Reader;
@@ -9,6 +8,7 @@ import com.zhou.bms2.mapper.LoginMapper;
 import com.zhou.bms2.service.LoginService;
 import com.zhou.bms2.service.ReaderRoleService;
 import com.zhou.bms2.service.ReaderService;
+import com.zhou.bms2.system.UserInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +26,8 @@ public class LoginServiceImpl extends ServiceImpl<LoginMapper, Login> implements
     private final ReaderRoleService readerRoleService;
 
     @Override
-    public Login login(String account, String password) {
-        return this.baseMapper.selectOne(
-                new LambdaQueryWrapper<Login>()
-                        .eq(Login::getAccount, account)
-                        .eq(Login::getPassword, password));
+    public UserInfo login(String account, String password) {
+        return this.getBaseMapper().queryUserInfo(account, password);
     }
 
     @Override
