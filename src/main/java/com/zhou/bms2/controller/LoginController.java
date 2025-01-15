@@ -6,7 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.zhou.bms2.BmsApplication;
 import com.zhou.bms2.service.LoginService;
 import com.zhou.bms2.system.UserInfo;
-import com.zhou.bms2.util.AlertUtil;
+import com.zhou.bms2.system.util.AlertUtil;
 import com.zhou.bms2.view.AdminMainView;
 import com.zhou.bms2.view.ForgetView;
 import com.zhou.bms2.view.MainView;
@@ -46,7 +46,7 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField passwordTextField;
 
-    @Resource(name = "commonCache")
+    @Resource(name = "userCache")
     private Cache<String, UserInfo> cache;
 
     @Override

@@ -1,4 +1,4 @@
-package com.zhou.bms2.util;
+package com.zhou.bms2.system.util;
 
 import java.util.HashMap;
 import java.util.Map;

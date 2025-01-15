@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CommonBean {
 
-    @Bean("commonCache")
+    @Bean("userCache")
     public Cache<String, UserInfo> buildCache() {
         // 最大1000容量，超时时间30分钟
         return new LFUCache<>(50, 0L);

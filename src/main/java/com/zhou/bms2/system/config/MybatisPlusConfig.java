@@ -1,4 +1,4 @@
-package com.zhou.bms2.config;
+package com.zhou.bms2.system.config;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import org.apache.ibatis.reflection.MetaObject;

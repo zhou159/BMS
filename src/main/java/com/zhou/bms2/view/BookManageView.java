@@ -6,7 +6,8 @@ import de.felixroske.jfxsupport.FXMLView;
 /**
  * @author zhouxiong
  * @version v1.0
- * @since 2022/6/8 12:58
+ * 2025/1/15 17:03
  */
-@FXMLView("/views/main.fxml")
-public class MainView extends AbstractFxmlView {}
+@FXMLView("/views/bookManage.fxml")
+public class BookManageView extends AbstractFxmlView {
+}
