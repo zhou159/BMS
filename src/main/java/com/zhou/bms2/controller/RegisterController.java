@@ -3,29 +3,30 @@ package com.zhou.bms2.controller;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhou.bms2.BmsApplication;
-import com.zhou.bms2.entity.Login;
-import com.zhou.bms2.entity.Reader;
-import com.zhou.bms2.entity.ReaderRole;
 import com.zhou.bms2.service.LoginService;
-import com.zhou.bms2.service.ReaderRoleService;
-import com.zhou.bms2.service.ReaderService;
 import com.zhou.bms2.system.enums.SourceEnum;
+import com.zhou.bms2.util.AlertUtil;
 import com.zhou.bms2.util.ImageUtil;
 import com.zhou.bms2.view.LoginView;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.support.TransactionTemplate;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -33,6 +34,7 @@ import java.util.ResourceBundle;
  * @version v1.0
  * @since 2023/1/18 16:42
  */
+@Slf4j
 @RequiredArgsConstructor
 @FXMLController
 public class RegisterController implements Initializable {
@@ -66,8 +68,9 @@ public class RegisterController implements Initializable {
     private String checkCode;
 
     private final LoginService loginService;
-    private final ReaderService readerService;
-    private final ReaderRoleService readerRoleService;
+
+    @Resource
+    private TransactionTemplate transactionTemplate;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -94,41 +97,18 @@ public class RegisterController implements Initializable {
         if (!this.valueCheck()) {
             return;
         }
-        this.buildLogin(account.getText(), password.getText());
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION,
-                "账号创建成功！是否前往登录？",
-                new ButtonType("取消", ButtonBar.ButtonData.NO),
-                new ButtonType("确定", ButtonBar.ButtonData.YES));
-        Optional<ButtonType> buttonType = alert.showAndWait();
-        if (buttonType.isPresent()) {
-            if (buttonType.get().getButtonData().equals(ButtonBar.ButtonData.YES)) {
-                BmsApplication.showView(LoginView.class);
+        transactionTemplate.execute(status -> {
+            try {
+                loginService.register(account.getText(), password.getText());
+                return null;
+            } catch (Exception e) {
+                log.error("注册业务异常，回滚！");
+                status.setRollbackOnly();
+                AlertUtil.showSystemError();
+                throw new RuntimeException("系统异常！");
             }
-        }
-    }
-
-    private void buildLogin(String account, String password) {
-        Reader reader = this.buildReader();
-
-        Login login = new Login();
-        login.setAccount(account);
-        login.setPassword(password);
-        login.setReaderId(reader.getId());
-        loginService.save(login);
-    }
-
-    private Reader buildReader() {
-        Reader reader = new Reader();
-        readerService.save(reader);
-        this.buildReaderRole(reader.getId());
-        return reader;
-    }
-
-    private void buildReaderRole(String readerId) {
-        ReaderRole readerRole = new ReaderRole();
-        readerRole.setReaderId(readerId);
-        readerRole.setRoleId("2");
-        readerRoleService.save(readerRole);
+        });
+        AlertUtil.confirmAlertToPage("账号创建成功！是否前往登录？", LoginView.class);
     }
 
     private boolean valueCheck() {
@@ -162,6 +142,11 @@ public class RegisterController implements Initializable {
             return false;
         }
 
+        long count = loginService.countByAccount(account.getText());
+        if (count > 0) {
+            AlertUtil.showError("账号已存在！");
+            return false;
+        }
         return true;
     }
 
@@ -204,7 +189,6 @@ public class RegisterController implements Initializable {
 
     @FXML
     protected void imageClickListener() {
-        codeImg.setImage(null);
         this.setCodeImage();
     }
 }

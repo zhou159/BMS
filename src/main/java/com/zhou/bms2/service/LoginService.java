@@ -12,4 +12,8 @@ import com.zhou.bms2.entity.Login;
 public interface LoginService extends IService<Login> {
 
     Login login(String account, String password);
+
+    void register(String account, String password);
+
+    long countByAccount(String account);
 }
