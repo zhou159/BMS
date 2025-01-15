@@ -19,9 +19,28 @@ import org.springframework.stereotype.Component;
 @NoArgsConstructor
 @Builder
 public class UserInfo {
+    /**
+     * 读者账号
+     */
     private String account;
+
+    /**
+     * 读者ID
+     */
     private String userId;
+
+    /**
+     * 读者姓名
+     */
     private String name;
+
+    /**
+     * 读者角色
+     */
     private String roleName;
+
+    /**
+     * 读者职业
+     */
     private String type;
 }

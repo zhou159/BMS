@@ -1,10 +1,9 @@
 package com.zhou.bms2.system;
 
+import cn.hutool.cache.Cache;
+import cn.hutool.cache.impl.LFUCache;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * @author zhouxiong
@@ -13,8 +12,10 @@ import java.util.Map;
  */
 @Component
 public class CommonBean {
-    @Bean("commonMap")
-    public Map<String, Object> getMap() {
-        return new LinkedHashMap<>(16);
+
+    @Bean("commonCache")
+    public Cache<String, UserInfo> buildCache() {
+        // 最大1000容量，超时时间30分钟
+        return new LFUCache<>(1000, 0L);
     }
 }

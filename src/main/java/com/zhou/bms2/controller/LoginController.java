@@ -1,5 +1,6 @@
 package com.zhou.bms2.controller;
 
+import cn.hutool.cache.Cache;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.zhou.bms2.BmsApplication;
@@ -18,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lombok.RequiredArgsConstructor;
 
+import javax.annotation.Resource;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -44,6 +46,9 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField passwordTextField;
 
+    @Resource(name = "commonCache")
+    private Cache<String, UserInfo> cache;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -65,6 +70,8 @@ public class LoginController implements Initializable {
             AlertUtil.showError("账号密码错误，请重新输入！");
             return;
         }
+
+        cache.put("userInfo", loginUser);
 
         // 没有找到角色，则使用学生角色
         if (StrUtil.isNotBlank(loginUser.getRoleName()) && "admin".equals(loginUser.getRoleName())) {
