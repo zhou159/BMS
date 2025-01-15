@@ -22,23 +22,29 @@ import java.time.LocalDateTime;
 public class BookCategory implements Serializable {
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
-    
-    /** 书籍分类id */
+
+    /**
+     * 书籍分类id
+     */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
-    
-    /** 书籍分类名 */
+
+    /**
+     * 书籍分类名
+     */
     @TableField(value = "name")
     private String name;
-    
-    /** 逻辑删除1：删除；0：未删除 */
+
+    /**
+     * 逻辑删除1：删除；0：未删除
+     */
     @TableLogic
     @TableField(value = "deleted")
     private Integer deleted;
-    
+
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-    
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 }

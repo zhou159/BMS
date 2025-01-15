@@ -57,19 +57,23 @@ public class LoginController implements Initializable {
      */
     @FXML
     protected void onLoginButtonClick() {
-        String account = accountTextField.getText(); String password = passwordTextField.getText();
+        String account = accountTextField.getText();
+        String password = passwordTextField.getText();
         if (StrUtil.isBlank(account)) {
-            nameTip.setText("请输入用户名！"); return;
+            nameTip.setText("请输入用户名！");
+            return;
         }
         
         if (StrUtil.isBlank(password)) {
-            passwordTip.setText("请输入密码！"); return;
+            passwordTip.setText("请输入密码！");
+            return;
         }
         
         Login login = loginService.login(account, password);
         
         if (ObjectUtil.isNull(login)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR); alert.setContentText("账号密码错误，请重新输入！");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("账号密码错误，请重新输入！");
             alert.show();
             return;
         }

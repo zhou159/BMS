@@ -23,15 +23,21 @@ public class PublishingHouse implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** 出版社id */
+    /**
+     * 出版社id
+     */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
-    /** 出版社名字 */
+    /**
+     * 出版社名字
+     */
     @TableField(value = "publishing_house_name")
     private String name;
 
-    /** 逻辑删除 */
+    /**
+     * 逻辑删除
+     */
     @TableLogic
     @TableField(value = "deleted")
     private Integer deleted;
@@ -39,6 +45,6 @@ public class PublishingHouse implements Serializable {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 }

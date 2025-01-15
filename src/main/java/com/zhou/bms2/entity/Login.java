@@ -21,25 +21,33 @@ import java.time.LocalDateTime;
 @TableName(value = "login")
 public class Login implements Serializable {
     private static final long serialVersionUID = 1L;
-    /** 登录id */
+    /**
+     * 登录id
+     */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
-    /** 登录账户 */
+    /**
+     * 登录账户
+     */
     @TableField(value = "account")
     private String account;
 
-    /** 登录密码 */
+    /**
+     * 登录密码
+     */
     @TableField(value = "password")
     private String password;
 
-    /** 登录账户所绑定读者id */
+    /**
+     * 登录账户所绑定读者id
+     */
     @TableField(value = "reader_id")
     private String readerId;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 }

@@ -27,17 +27,21 @@ public class ReaderRole implements Serializable {
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
-    /** 角色id */
+    /**
+     * 角色id
+     */
     @TableField(value = "role_id")
     private String roleId;
 
-    /** 读者id */
+    /**
+     * 读者id
+     */
     @TableField(value = "reader_id")
-    private Integer readerId;
+    private String readerId;
 
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 }

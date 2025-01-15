@@ -23,14 +23,21 @@ import java.io.Serializable;
 @TableName(value = "role")
 public class Role implements Serializable {
     private static final long serialVersionUID = 1L;
-    /** 角色id */
+    /**
+     * 角色id
+     */
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     private String id;
 
-    /** 角色名字 */
+    /**
+     * 角色名字
+     */
     @TableField(value = "name")
     private String name;
 
+    /**
+     * 标签
+     */
     @TableField(value = "label")
     private String label;
 }
