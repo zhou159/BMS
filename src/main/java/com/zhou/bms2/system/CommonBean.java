@@ -16,6 +16,6 @@ public class CommonBean {
     @Bean("commonCache")
     public Cache<String, UserInfo> buildCache() {
         // 最大1000容量，超时时间30分钟
-        return new LFUCache<>(1000, 0L);
+        return new LFUCache<>(50, 0L);
     }
 }
