@@ -24,12 +24,13 @@ public class BmsApplication extends AbstractJavaFxApplicationSupport {
 
     @Override
     public Collection<Image> loadDefaultIcons() {
-        return Collections.singletonList(new Image(Objects.requireNonNull(this.getClass().getResource("/static/book.ico")).toExternalForm()));
+        return Collections.singletonList(new Image(Objects.requireNonNull(this.getClass().getResource("/static/write.png")).toExternalForm()));
     }
 
     @Override
     public void start(Stage stage) throws Exception {
-        stage.getIcons().add(new Image("static/book.ico"));
+        stage.getIcons().add(new Image("/static/write.png"));
+        stage.setTitle("BMS图书管理系统+v2.0");
         //不可拉伸
         stage.setResizable(false);
         super.start(stage);
