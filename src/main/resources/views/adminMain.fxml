@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.Pane?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
-      fx:controller="com.zhou.bms2.controller.AdminMainController">
-    <Button fx:id="userManager" layoutX="204.0" layoutY="144.0" mnemonicParsing="false" onAction="#toUserPage"
-            text="读者管理"/>
-    <Label layoutX="236.0" layoutY="71.0" text="管理员："/>
-    <Label fx:id="tipNameLabel" layoutX="285.0" layoutY="71.0" text="Label" textFill="#ff3002"/>
-    <Label layoutX="322.0" layoutY="71.0" text="，您好！"/>
-    <Button fx:id="bookManger" layoutX="314.0" layoutY="144.0" mnemonicParsing="false" onAction="#toBookPage"
-            text="书籍管理"/>
+
+<Pane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zhou.bms2.controller.AdminMainController">
+    <Button fx:id="userManager" layoutX="204.0" layoutY="144.0" mnemonicParsing="false" onAction="#toUserPage" text="读者管理" />
+    <Label layoutX="188.0" layoutY="71.0" text="管理员：" />
+    <Label fx:id="tipNameLabel" layoutX="262.0" layoutY="71.0" text="Label" textFill="#ff3002" />
+    <Label layoutX="314.0" layoutY="71.0" text="，您好！" />
+    <Button fx:id="bookManger" layoutX="314.0" layoutY="144.0" mnemonicParsing="false" onAction="#toBookPage" text="书籍管理" />
 </Pane>

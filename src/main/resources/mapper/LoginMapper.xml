@@ -5,13 +5,14 @@
 <mapper namespace="com.zhou.bms2.mapper.LoginMapper">
     <select id="queryUserInfo" resultType="com.zhou.bms2.system.UserInfo">
         select l.account,
-               r.id,
+               r.id as userId,
                r.name,
                r2.name as roleName,
                case r.profession
                    when '0' then '学生'
                    when '1' then '教职工'
-                   end as type
+                   end as type,
+               r.status
         from login l
                  left join bms.reader r on r.id = l.reader_id
                  left join bms.reader_role rr on r.id = rr.reader_id

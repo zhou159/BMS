@@ -7,10 +7,7 @@ import com.zhou.bms2.BmsApplication;
 import com.zhou.bms2.service.LoginService;
 import com.zhou.bms2.system.UserInfo;
 import com.zhou.bms2.system.util.AlertUtil;
-import com.zhou.bms2.view.AdminMainView;
-import com.zhou.bms2.view.ForgetView;
-import com.zhou.bms2.view.MainView;
-import com.zhou.bms2.view.RegisterView;
+import com.zhou.bms2.view.*;
 import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -76,6 +73,10 @@ public class LoginController implements Initializable {
         // 没有找到角色，则使用学生角色
         if (StrUtil.isNotBlank(loginUser.getRoleName()) && "admin".equals(loginUser.getRoleName())) {
             BmsApplication.showView(AdminMainView.class);
+            return;
+        }
+        if ("0".equals(loginUser.getStatus())) {
+            BmsApplication.showView(ReaderInitView.class);
             return;
         }
         BmsApplication.showView(MainView.class);

@@ -41,4 +41,9 @@ public class UserInfo {
      * 读者职业
      */
     private String type;
+
+    /**
+     * 读者状态
+     */
+    private String status;
 }
